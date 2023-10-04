@@ -14,14 +14,14 @@ async function getFile() {
     const [fileHandle] = await window.showOpenFilePicker(openOptions);
     const file = await fileHandle.getFile();
     const fileText = await file.text();
-    convertToJSON([fileText, file.name]);
+    convertToJSON(fileText, file.name);
   } catch (error) {
     console.log(error);
   }
 }
 
-function convertToJSON(data) {
-  const emitters = data[0].split(/\n\r/);
+function convertToJSON(text, name) {
+  const emitters = text.split(/\n\r/);
   const properties = emitters.map((e) => e.match(/\'?([a-z]+)-?(\w+)(?=\=)/gi));
   const values = emitters.map((e) =>
     e.match(/(\d+(\.\d+)?(\s\d+(\.\d+)?)*)(?![\w\=])|[\w-_\.\/]+(?=\")/gi)
@@ -38,7 +38,7 @@ function convertToJSON(data) {
     }
   }
   const json = JSON.stringify(troyJSON);
-  writeJSON(json, data[1]);
+  writeJSON(json, name);
 }
 
 async function writeJSON(stringified, defaultName) {
