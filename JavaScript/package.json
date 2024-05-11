@@ -1,0 +1,17 @@
+{
+  "name": "troy2json-javascript",
+  "version": "0.0.2",
+  "description": "A CLI to convert a .troy into .json",
+  "bin": {
+    "convert": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Tasssiooo",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.0.0"
+  }
+}
